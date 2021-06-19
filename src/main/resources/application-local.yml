@@ -1,0 +1,17 @@
+# MRR DataSource
+mrr:
+    datasource:
+        url: jdbc:oracle:thin:@assetdevvip:1521:assetdev
+        username: MRR_APP_USER
+        password: MRR_APP_USER
+
+# MRR BPM DataSource
+    bpm:
+        datasource:
+            url: jdbc:oracle:thin:@assetdevvip:1521:assetdev
+            username: MRR_APP_USER
+            password: MRR_APP_USER
+
+logging:
+    level:
+        root: ERROR

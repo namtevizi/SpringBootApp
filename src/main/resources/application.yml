@@ -1,0 +1,74 @@
+spring:
+    main:
+        banner-mode: off
+        allow-bean-definition-overriding: true
+    application:
+        name: mrr-services
+    messages:
+        basename: errors,service
+        use-code-as-default-message: true
+    profiles:
+        active: @spring.profiles.active@
+
+
+#actuator
+management:
+    server: 
+        port: 8081
+    endpoint:
+        health:
+            show-details: ALWAYS
+        web:
+            exposure:
+                include: "*"
+    application:
+        name: ${spring.application.name}
+
+#Server port
+server:
+    port: 8080
+
+#Service path
+cxf:
+    path: /
+
+# Oracle
+oracleSchema: MRR
+
+# MRR DataSource Settings
+mrr:
+    datasource:
+        driverClassName: oracle.jdbc.OracleDriver
+        connection-timeout: 60000
+        minimumIdle: 5
+        maximumPoolSize: 2
+        idleTimeout: 30000
+        poolName: MrrDataSourcePool
+        maxLifetime: 2000000
+        connectionTimeout: 30000
+        connectionTestQuery: select 1 from dual
+        connectionInitSql: SET SCHEMA 'MRR'
+
+# MRR BPM DataSource Settings
+    bpm:
+        datasource:
+            driverClassName: oracle.jdbc.OracleDriver
+            connection-timeout: 60000
+            minimumIdle: 5
+            maximumPoolSize: 1
+            idleTimeout: 30000
+            poolName: MrrBpmDataSourcePool
+            maxLifetime: 2000000
+            connectionTimeout: 30000
+            connectionTestQuery: select 1 from dual
+            connectionInitSql: SET SCHEMA 'MRR'
+
+# Hibernate
+hibernate:
+    dialect: org.hibernate.dialect.Oracle10gDialect
+    show_sql: true
+    default_schema: MRR
+    transaction:
+        auto_close_session: true
+    connection:
+        release_mode: auto
